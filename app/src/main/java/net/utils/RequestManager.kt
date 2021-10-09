@@ -33,7 +33,7 @@ class RequestManager {
                     call: Call<List<DataEntity>>,
                     response: Response<List<DataEntity>>
                 ) {
-                    callBack.onSuccess(response.body()!!)
+                    callBack.onSuccess(response.body()!! as ArrayList<DataEntity>)
                 }
 
                 override fun onFailure(call: Call<List<DataEntity>>, t: Throwable) {
@@ -48,7 +48,7 @@ class RequestManager {
                 call: Call<List<DataEntity>>,
                 response: Response<List<DataEntity>>
             ) {
-                callBack.onSuccess(response.body()!!)
+                callBack.onSuccess(response.body()!! as ArrayList<DataEntity>)
             }
 
             override fun onFailure(call: Call<List<DataEntity>>, t: Throwable) {
