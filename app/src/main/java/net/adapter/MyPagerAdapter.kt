@@ -33,7 +33,8 @@ class MyPagerAdapter(val context: Context, val data: ArrayList<DataEntity>): Pag
         val view =
             LayoutInflater.from(context).inflate(R.layout.layout_item_vp, container, false) as View
         val img = view.findViewById<ImageView>(R.id.itemImg)
-        Glide.with(context).load(data[position].img_thumb_url).into(img)
+        Glide.with(context).load(data[position].img_url).into(img)
+        container.addView(view)
         return view
     }
 

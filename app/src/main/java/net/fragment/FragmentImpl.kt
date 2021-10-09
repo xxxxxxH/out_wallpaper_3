@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import kotlinx.android.synthetic.main.layout_fragment.*
-import kotlinx.android.synthetic.main.layout_fragment_setting.*
+import kotlinx.android.synthetic.main.layout_setting.*
 import net.adapter.DataEntityAdapter
 import net.adapter.ResAdapter
 import net.basicmodel.R
 import net.basicmodel.ReviewActivity
+import net.basicmodel.TypeDetailsActivity
 import net.entity.DataEntity
+import net.entity.ResourceEntity
 import net.utils.*
 
 
@@ -64,6 +66,13 @@ class FragmentImpl(t: String, id: Int) : BaseFragment(t, id), DataCallBack {
         val resAdapter = activity?.let { ResAdapter(it, R.layout.layout_item, data) }
         recycler.layoutManager = GridLayoutManager(activity, 3)
         recycler.adapter = resAdapter
+        resAdapter?.setOnItemClickListener { adapter, view, position ->
+            val entity = adapter.data[position] as ResourceEntity
+            val type = entity.name.substring(0, entity.name.length - 3)
+            val i = Intent(activity, TypeDetailsActivity::class.java)
+            i.putExtra(Constant.DETAILS, type)
+            activity?.startActivity(i)
+        }
     }
 
     private fun initSettingData() {
